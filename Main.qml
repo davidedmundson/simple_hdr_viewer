@@ -9,11 +9,20 @@ ApplicationWindow {
     color: "black"
 
 
-    DelegateModel {
-        id: imageDelegateModel
-        model: imageModel
 
-        delegate: WindowContainer {
+    ListView {
+        anchors.fill: parent
+        anchors.margins: 50
+        orientation: ListView.Horizontal
+        snapMode: ListView.SnapOneItem
+        boundsBehavior: Flickable.StopAtBounds
+        highlightRangeMode: ListView.StrictlyEnforceRange
+        reuseItems: true
+        model: imageModel
+        focus: true
+        interactive: true
+
+           delegate: WindowContainer {
             id: container
             required property string filePath
 
@@ -26,18 +35,10 @@ ApplicationWindow {
                 path: filePath
             }
         }
-    }
 
-    ListView {
-        anchors.fill: parent
-        orientation: ListView.Horizontal
-        snapMode: ListView.SnapOneItem
-        boundsBehavior: Flickable.StopAtBounds
-        highlightRangeMode: ListView.StrictlyEnforceRange
-        reuseItems: true
-        model: imageDelegateModel
-        focus: true
-        interactive: true
+        // delegate: Image {
+        //     source: filePath
+        // }
     }
 
     ListModel {
@@ -46,7 +47,7 @@ ApplicationWindow {
             filePath: "qrc:/SimpleImageViewer/Triad-hdr.avif"
         }
         ListElement {
-            filePath: "qrc:/SimpleImageViewer/Triad-hdr.avif"
+            filePath: "qrc:/SimpleImageViewer/WideGamut-Neon-DisplayP3.avif"
         }
     }
 }

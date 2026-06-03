@@ -11,6 +11,8 @@
 ImageView::ImageView(QWindow *parent)
     : QRasterWindow(parent)
 {
+    // transparent for input
+    setMask(QRegion());
 }
 
 QString ImageView::path() const

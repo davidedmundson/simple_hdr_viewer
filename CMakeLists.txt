@@ -23,6 +23,7 @@ qt_add_qml_module(simpleimageviewer
         Main.qml
     RESOURCES
         Triad-hdr.avif
+        WideGamut-Neon-DisplayP3.avif
 )
 
 target_link_libraries(simpleimageviewer
