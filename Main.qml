@@ -10,35 +10,46 @@ ApplicationWindow {
 
 
 
-    ListView {
+    Flickable {
+        id: flickable
         anchors.fill: parent
         anchors.margins: 50
-        orientation: ListView.Horizontal
-        snapMode: ListView.SnapOneItem
-        boundsBehavior: Flickable.StopAtBounds
-        highlightRangeMode: ListView.StrictlyEnforceRange
-        reuseItems: true
-        model: imageModel
+        contentWidth: row.width
+        contentHeight: height
         focus: true
         interactive: true
+        boundsBehavior: Flickable.StopAtBounds
+        clip: true
 
-           delegate: WindowContainer {
-            id: container
-            required property string filePath
+        Row {
+            id: row
+            height: flickable.height
 
-            width: ListView.view.width
-            height: ListView.view.height
+            Repeater {
+                model: imageModel
 
-            window: ImageView {
-                width: container.width
-                height: container.height
-                path: filePath
+                // delegate: Image {
+                //     width: 400
+                //     height: 400
+                //     source: model.filePath
+                //
+                // }
+
+                delegate: WindowContainer {
+                    id: container
+                    required property string filePath
+
+                    width: flickable.width
+                    height: flickable.height
+
+                    window: ImageView {
+                        width: container.width
+                        height: container.height
+                        path: container.filePath
+                    }
+                }
             }
         }
-
-        // delegate: Image {
-        //     source: filePath
-        // }
     }
 
     ListModel {
