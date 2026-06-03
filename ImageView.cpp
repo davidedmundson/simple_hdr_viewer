@@ -6,6 +6,7 @@
 #include <QSize>
 #include <QSurfaceFormat>
 #include <QColorSpace>
+#include <QUrl>
 
 ImageView::ImageView(QWindow *parent)
     : QRasterWindow(parent)
@@ -24,7 +25,19 @@ void ImageView::setPath(const QString &path)
     }
 
     m_path = path;
-    m_image = QImage(m_path);
+    QString imagePath = m_path;
+    const QUrl url(m_path);
+
+    if (url.isValid() && !url.scheme().isEmpty()) {
+        if (url.scheme() == QStringLiteral("qrc")) {
+            imagePath = QStringLiteral(":") + url.path();
+        } else if (url.isLocalFile()) {
+            imagePath = url.toLocalFile();
+        }
+    }
+
+    qDebug() << imagePath;
+    m_image = QImage(imagePath);
 
 
     // in order to change format we have to rebuild our window, this should be fine?

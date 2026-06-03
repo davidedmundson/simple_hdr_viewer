@@ -21,6 +21,8 @@ qt_add_qml_module(simpleimageviewer
         ImageView.h
     QML_FILES
         Main.qml
+    RESOURCES
+        Triad-hdr.avif
 )
 
 target_link_libraries(simpleimageviewer

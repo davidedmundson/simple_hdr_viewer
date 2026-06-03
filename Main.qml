@@ -37,15 +37,16 @@ ApplicationWindow {
         reuseItems: true
         model: imageDelegateModel
         focus: true
+        interactive: true
     }
 
     ListModel {
         id: imageModel
         ListElement {
-            filePath: "/home/david/Downloads/Triad-hdr.avif"
+            filePath: "qrc:/SimpleImageViewer/Triad-hdr.avif"
         }
         ListElement {
-            filePath: "/home/david/Downloads/Triad-hdr.avif"
+            filePath: "qrc:/SimpleImageViewer/Triad-hdr.avif"
         }
     }
 }
