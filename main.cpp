@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_WAYLAND_SETMASK_AFFECTS_VIEWPORT", 1);
     QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
